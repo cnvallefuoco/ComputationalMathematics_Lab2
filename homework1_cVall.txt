@@ -1,0 +1,139 @@
+1. 
+	A)Below is the result of running the matlab cose using the composite trapezoidal method. We can see
+	that the values of the ratios is about 4. From this, we know that the composite trapezoidal method
+	converges with rate second order h (2^2) = 4 --> h is second order
+run_composite_rule
+ Approximate Integral        Error
+   3.131176470588235  -0.010416183001558
+   3.138988494491089  -0.002604159098704
+   3.140941612041389  -0.000651041548404
+   3.141429893174975  -0.000162760414818
+   3.141551963485654  -0.000040690104139
+Ratios
+   3.999825896482436
+   3.999989102212179
+   3.999999318823022
+   3.999999957293767
+
+	B) Below is the results when n=259 is put into the code. The error is .2e-5, which is less that 1e-5. Therefore 
+	the n we found results in an error less that 1e-5. 
+ Approximate Integral        Error
+   3.141590169031326  -0.000002484558469
+
+Ratios
+     1
+
+2.  
+Simpsons' rule was implemented by adding the following line to case B:
+approx_int = (h/3)*(feval(f,nodes(1)) + 4.0*sum(feval(f,nodes(2:2:n))) + 2.0*sum(feval(f,nodes(3:2:n-1))) + feval(f,nodes((n+1))));
+
+3. 
+The rate of convergence for Simpsons' method is 4th order. 
+
+4. 
+	A) We know that Simpsons' method is 4th order. But, because the graph of this first function is almost like a parabola, 
+	Simpsons' method gives us a very good approximation. That is why our ratios are high (up to 64 as seen below), instead 
+	of 16. 
+>> run_composite_rule
+ Approximate Integral        Error
+   3.141568627450980  -0.000024026138815
+   3.141592502458707  -0.000000151131088
+   3.141592651224822  -0.000000002364973
+   3.141592653552837  -0.000000000036958
+   3.141592653589216  -0.000000000000579
+   3.141592653589783  -0.000000000000012
+   3.141592653589794  -0.000000000000001
+   3.141592653589792  -0.000000000000003
+   3.141592653589794  -0.000000000000001
+
+Ratios
+   1.0e+02 *
+
+   1.589754902103673
+   0.639039351821425
+   0.639900748591135
+   0.638702993092863
+   0.482592592592593
+   0.090000000000000
+   0.004285714285714
+   0.035000000000000
+
+	B) Below, we can see the ratio is at 16.22 in the row with the ** at the end. This shows us that the rate of 
+	convergence is 4th order. 2^4 = 16 --> 4th order. 
+>> run_composite_rule
+ Approximate Integral        Error
+   0.904501265751175  -0.000022972149103
+   0.904524159206964  -0.000000078693313
+   0.904524252567504   0.000000014667227
+   0.904524239115947   0.000000001215669
+   0.904524237980895   0.000000000080617
+   0.904524237905383   0.000000000005106
+   0.904524237900592   0.000000000000315
+   0.904524237900292   0.000000000000014
+   0.904524237900274  -0.000000000000004
+
+Ratios
+   1.0e+02 *
+
+   2.919199629126349
+  -0.053652483294059
+   0.120651481085498
+   0.150794863779149
+   0.157900493617762
+   0.162211640211640 **
+   0.221484375000000
+  -0.035555555555556
+
+5. 
+Below is the integral evaluated using the trapeziodal method. 
+>> run_composite_rule
+ Approximate Integral        Error
+   3.131176470588235  -0.010416183001559
+   3.138988494491089  -0.002604159098706
+   3.140941612041389  -0.000651041548406
+   3.141429893174975  -0.000162760414820
+   3.141551963485654  -0.000040690104141
+   3.141582481063752  -0.000010172526043
+   3.141590110458282  -0.000002543131513
+   3.141592017806921  -0.000000635782873
+   3.141592494644073  -0.000000158945722
+
+Ratios
+   3.999825896480390
+   3.999989102203993
+   3.999999318790280
+   3.999999957162800
+   3.999999996987754
+   3.999999995809048
+   4.000000030733645
+   3.999999899417164
+
+Below is the integral evaluated using Simpsons' method. 
+>> run_composite_rule
+ Approximate Integral        Error
+   3.141568627450980  -0.000024026138815
+   3.141592502458707  -0.000000151131088
+   3.141592651224822  -0.000000002364973
+   3.141592653552837  -0.000000000036958
+   3.141592653589216  -0.000000000000579
+   3.141592653589783  -0.000000000000012
+   3.141592653589794  -0.000000000000001
+   3.141592653589792  -0.000000000000003
+   3.141592653589794  -0.000000000000001
+
+Ratios
+   1.0e+02 *
+
+   1.589754902103673
+   0.639039351821425
+   0.639900748591135
+   0.638702993092863
+   0.482592592592593
+   0.090000000000000
+   0.004285714285714
+   0.035000000000000
+
+From the error columns above, we can see that Simpsons' method gives us a smaller error quicker that the trapeziodal 
+method. In the last row of the two error columns, trapezoidal gives us -0.000000158945722 as the error while Simpsons' 
+gives us -0.000000000000001.  This is expected because in class we said the Simpsons' method was superior unless 
+dealing with periodic functions. Simpsons' method is preferred because it yields more accurate results. 
